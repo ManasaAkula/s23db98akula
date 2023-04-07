@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p #{query.rows} and #{query.cols}
+  - let rows = Number(query.rows);
+  - let colums = Number(query.cols);
+  if !(Number.isInteger(rows) && Number.isInteger(colums))
+    p Rows/colums are must be converted to integers
+  else if rows > 10 || rows < 1
+    p Rows out of range
+  else if colums > 10 || colums < 1
+    p Colums out of range
+  else
+    table#outer
+    - for(let k =0;k< rows; k++){
+      tr#middle
+      <br>
+        - for(let l =0;l<colums;l++){
+          td= (k==l)? 1 : (l<k)?0:(l-k+1)
+          - }
+    - }

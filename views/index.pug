@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to Manasa's s23wb98akula lab#{title}
+  
+  button(type="button",onclick="doReduce()", class="btn btn-secondary") PressMe
+  div(id="reduce") Reduce the value 
+    script.
+       let count = 20;
+       let change = -1;
+       function doReduce(){
+          count = count + change;
+          change--;
+          document. getElementById("reduce"). innerHTML = `Count ${count} with change ${change}`;       
+       }
