@@ -16,9 +16,26 @@ exports.shoes_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes detail: ' + req.params.id);
 };
 // Handle Shoes create on POST.
-exports.shoes_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: Shoes create POST');
-};
+// Handle shoes create on POST.
+exports.shoes_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new shoes();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"shoes_type":"goat", "cost":12, "size":"large"}
+    document.shoes_type = req.body.shoes_type;
+    document.shoes_name= req.body.shoes_name;
+    document.shoes_cost = req.body.shoes_cost;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
 // Handle Shoes delete form on DELETE.
 exports.shoes_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes delete DELETE ' + req.params.id);
