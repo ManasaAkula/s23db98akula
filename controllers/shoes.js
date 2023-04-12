@@ -1,8 +1,16 @@
 var shoes = require('../models/shoes');
 // List of all Shoes
-exports.shoes_list = function(req, res) {
- res.send('NOT IMPLEMENTED: Shoes list');
-};
+// List of all shoes
+exports.shoes_list = async function(req, res) {
+    try{
+    theshoes = await shoes.find();
+    res.send(theshoes);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
 // for a specific Shoes.
 exports.shoes_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes detail: ' + req.params.id);
@@ -19,3 +27,16 @@ exports.shoes_delete = function(req, res) {
 exports.shoes_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes update PUT' + req.params.id);
 };
+
+// VIEWS
+// Handle a show all view
+exports.shoes_view_all_Page = async function(req, res) {
+    try{
+    theshoes = await shoes.find();
+    res.render('shoes', { title: 'shoes Search Results', results: theshoes });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };

@@ -49,23 +49,23 @@ console.log("Connection to DB succeeded")});
 async function recreateDB(){
  // Delete everything
  await shoes.deleteMany();
+ 
  let instance1 = new
- shoes({shoes_type:"Knee-high", shoes_name:'Nike',
- shoes_cost:6000});
+ shoes({shoes_type:"Knee-high", shoes_name:'Nike',shoes_cost:6000});
  instance1.save().then( function(err,doc) {
  if(err) return console.error(err);
  console.log("First object saved")
  });
+
  let instance2 = new
- shoes({shoes_type:"Earth shoe", shoes_name:'Adidas',
- shoes_cost:4000});
+ shoes({shoes_type:"Earth shoe", shoes_name:'Adidas',shoes_cost:4000});
  instance2.save().then( function(err,doc) {
  if(err) return console.error(err);
  console.log("First object saved")
  });
+
  let instance3 = new
- shoes({shoes_type:"Flip-flops", shoes_name:'Reebok',
- shoes_cost:5000});
+ shoes({shoes_type:"Flip-flops", shoes_name:'Reebok',shoes_cost:5000});
  instance3.save().then( function(err,doc) {
  if(err) return console.error(err);
  console.log("First object saved")
