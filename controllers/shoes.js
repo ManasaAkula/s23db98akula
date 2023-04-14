@@ -12,9 +12,13 @@ exports.shoes_list = async function(req, res) {
     }
    };
 // for a specific Shoes.
+
 exports.shoes_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes detail: ' + req.params.id);
 };
+
+
+
 // Handle Shoes create on POST.
 // Handle shoes create on POST.
 exports.shoes_create_post = async function(req, res) {
@@ -55,5 +59,36 @@ exports.shoes_view_all_Page = async function(req, res) {
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
+    }
+   };
+
+   exports.shoes_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await shoes.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
+   
+   exports.shoes_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+   ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await shoes.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.shoes_type)
+    toUpdate.shoes_type = req.body.shoes_type;
+    if(req.body.shoes_name) toUpdate.shoes_name = req.body.shoes_name;
+    if(req.body.shoes_cost) toUpdate.shoes_cost = req.body.shoes_cost;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+   failed`);
     }
    };
