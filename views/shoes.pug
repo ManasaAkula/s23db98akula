@@ -2,14 +2,15 @@ extends layout
 
 block content
   h1= title
-  - var results = shoes;
+  -let shoes = results;
   div(class="container_fluid")
-    each item,index in results
+    each item,index in shoes
         div(class="row" onclick=`buy(${index})`)       
             div(class="col-sm-2") #{item.shoes_type}
             div(class="col-sm-2") #{item.shoes_name}
             div(class="col-sm-2") #{item.shoes_cost}
   script.
       function buy(indexnumber){
+        //indexnumber=indexnumber+1;
         alert('You purchased item '+ indexnumber)
       }          
