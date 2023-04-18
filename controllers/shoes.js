@@ -41,14 +41,26 @@ exports.shoes_create_post = async function(req, res) {
     }
    };
 // Handle Shoes delete form on DELETE.
-exports.shoes_delete = function(req, res) {
+/*exports.shoes_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes delete DELETE ' + req.params.id);
 };
 // Handle Shoes update form on PUT.
 exports.shoes_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: Shoes update PUT' + req.params.id);
 };
-
+*/
+exports.shoes_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await shoes.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 // VIEWS
 // Handle a show all view
 exports.shoes_view_all_Page = async function(req, res) {
@@ -92,3 +104,16 @@ exports.shoes_view_all_Page = async function(req, res) {
    failed`);
     }
    };
+
+   exports.shoes_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await shoes.findById( req.query.id)
+    res.render('shoesdetail',
+    { title: 'shoes Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
