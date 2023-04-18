@@ -23,4 +23,5 @@ router.get('/', shoes_controlers.shoes_view_all_Page );
 router.get('/detail', shoes_controlers.shoes_view_one_Page);
 router.get('/create', shoes_controlers.shoes_create_Page);
 router.get('/update', shoes_controlers.shoes_update_Page);
+router.get('/delete', shoes_controlers.shoes_delete_Page);
 module.exports = router;
