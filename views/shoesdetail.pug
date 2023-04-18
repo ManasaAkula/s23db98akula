@@ -1,10 +1,13 @@
 extends layout
 block content
  h1= title
- - let shoesid = toShow._id
- - let shoes_type = toShow.shoes_type
- - let shoes_name = toShow.shoes_name
- - let shoes_cost = toShow.shoes_cost
+ if (toShow == null)
+  h2 No instance to detail
+ else
+  - let shoesid = toShow._id
+  - let shoes_type = toShow.shoes_type
+  - let shoes_name = toShow.shoes_name
+  - let shoes_cost = toShow.shoes_cost
  div
   div.row
    div(class='shoesAttr mr-3') Shoes ID is:

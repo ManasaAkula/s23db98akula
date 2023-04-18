@@ -8,7 +8,11 @@ a {
 }
 
 .shoesAttr {
-  background-color: aquamarine;
-  width: 120px;
+  background-color: rgb(83, 39, 242);
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  display: inline-flexbox;
+  border: 1px solid palevioletred;
   }
   
