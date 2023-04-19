@@ -151,7 +151,7 @@ exports.shoes_view_all_Page = async function(req, res) {
     console.log("Delete view for id " + req.query.id)
     try{
     result = await shoes.findById(req.query.id)
-    res.render('shoesdelete', { title: 'shoes Delete', toShow: result });
+    res.render('shoesdelete', { title: 'Shoes Delete', toShow: result });
     }
     catch(err){
     res.status(500)
