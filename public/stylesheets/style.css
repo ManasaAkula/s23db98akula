@@ -9,10 +9,10 @@ a {
 
 .shoesAttr {
   background-color: rgb(9, 222, 233);
-  width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  display: inline-flexbox;
-  border: 1px solid palevioletred;
+  width: 150px;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 10px;
+  display: inline-block;
+  border: 2px solid rgba(11, 10, 10, 0.975);
   }
   
