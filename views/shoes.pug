@@ -1,16 +1,16 @@
 extends layout
-
 block content
   h1= title
-  -let shoes = results;
-  div(class="container_fluid")
-    each item,index in shoes
-        div(class="row" onclick=`buy(${index})`)       
-            div(class="col-sm-2") #{item.shoes_type}
-            div(class="col-sm-2") #{item.shoes_name}
-            div(class="col-sm-2") #{item.shoes_cost}
+  -let items = results
+  div(class="container-fluid")
+   div(class="row m-1")
+    each item in items
+     - let destination = `dispatch(\"/shoes/update?id=${item._id}\")`
+     div(class="row-sm-2", class="m-1") Item #{item.shoes_type}(#{item.shoes_name}) is #{item.shoes_cost}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+
   script.
-      function buy(indexnumber){
-        //indexnumber=indexnumber+1;
-        alert('You purchased item '+ indexnumber)
-      }          
+   function dispatch(path){
+     window.location.href=path
+   }
+         
