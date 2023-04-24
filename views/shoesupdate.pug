@@ -22,7 +22,7 @@ block content
       input#size(type='text', name='shoes_name', value= shoes_name )
     div.form-group
       label.shoesAttr(for='shoes_cost') shoes cost
-      input#cost(type='number', name='shoes_cost', value= shoes_cost )
+      input#cost(type='number', name='shoes_cost', value= shoes_cost,min=10,max=15000 )
     input(type="submit")
   script.
     document.forms['shoesForm'].addEventListener('submit', (event) => {
