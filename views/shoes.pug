@@ -2,15 +2,28 @@ extends layout
 block content
   h1= title
   -let items = results
+  -let destination1 = `dispatch(\"/shoes/create\")`
+  button.btn( class="btn-info ml-1", onclick= destination1) Create 
   div(class="container-fluid")
-   div(class="row m-1")
-    each item in items
-     - let destination = `dispatch(\"/shoes/update?id=${item._id}\")`
-     div(class="row-sm-2", class="m-1") Item #{item.shoes_type}(#{item.shoes_name}) is #{item.shoes_cost}
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
+   div(class="container_fluid")
+    each item,index in items
+     - let destination2 = `dispatch(\"/shoes/update?id=${item._id}\")`
+     - let destination3 = `dispatch(\"/shoes/detail?id=${item._id}\")`
+     - let destination4 = `dispatch(\"/shoes/delete?id=${item._id}\")`
+     div(class="row" onclick = `buy(${index})`)       
+            div(class="col-sm-2") #{item.shoes_type}
+            div(class="col-sm-2") #{item.shoes_name}
+            div(class="col-sm-2") #{item.shoes_cost}  
+     button.btn( class="btn-primary ml-1", onclick= destination2) Update
+     button.btn( class="btn-secondary ml-1", onclick= destination3) Detail  
+     button.btn( class="btn-warning", onclick= destination4) Delete
+
 
   script.
    function dispatch(path){
      window.location.href=path
    }
-         
+   script. 
+    function buy(num){
+      alert(`Purchased item`+num)
+    }

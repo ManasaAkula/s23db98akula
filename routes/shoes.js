@@ -18,14 +18,6 @@ router.get('/', function(req, res, next) {
     let s3= new shoes('Flip-flops','Reebok',5000);
   res.render('shoes', { title: 'Search Results Shoes',shoes: [s1,s2,s3] });
 });*/
-
-router.get('/', shoes_controlers.shoes_view_all_Page );
-router.get('/detail', shoes_controlers.shoes_view_one_Page);
-router.get('/create', shoes_controlers.shoes_create_Page);
-//router.get('/update', shoes_controlers.shoes_update_Page);
-router.get('/delete', shoes_controlers.shoes_delete_Page);
-module.exports = router;
-
 const secured = (req, res, next) => {
     if (req.user){
         return next();
@@ -33,7 +25,14 @@ const secured = (req, res, next) => {
     req.session.returnTo = req.originalUrl;
     res.redirect("/login");
 }
-    /* GET update costume page */
+router.get('/', shoes_controlers.shoes_view_all_Page );
+router.get('/detail', secured,shoes_controlers.shoes_view_one_Page);
+router.get('/create', secured,shoes_controlers.shoes_create_Page);
+//router.get('/update', shoes_controlers.shoes_update_Page);
+router.get('/delete', secured,shoes_controlers.shoes_delete_Page);
+module.exports = router;
+
+/* GET update costume page */
     
 router.get('/update', secured,shoes_controlers.shoes_update_Page);
     
