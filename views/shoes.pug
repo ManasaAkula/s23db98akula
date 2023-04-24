@@ -3,9 +3,9 @@ block content
   h1= title
   -let items = results
   -let destination1 = `dispatch(\"/shoes/create\")`
-  button.btn( class="btn-info ml-1", onclick= destination1) Create 
+  button.btn( class="btn-info ml-1", onclick= destination1) Create
   div(class="container-fluid")
-   div(class="container_fluid")
+   
     each item,index in items
      - let destination2 = `dispatch(\"/shoes/update?id=${item._id}\")`
      - let destination3 = `dispatch(\"/shoes/detail?id=${item._id}\")`
@@ -23,7 +23,4 @@ block content
    function dispatch(path){
      window.location.href=path
    }
-   script. 
-    function buy(num){
-      alert(`Purchased item`+num)
-    }
+   
